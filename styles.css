@@ -77,3 +77,57 @@ nav ul li a:hover {
         margin: 10px 0; /* Відступи */
     }
 }
+/* Стилі для секції "Про мене" */
+#about {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 20px auto;
+}
+
+/* Стилі для зображення */
+#about img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+    border: 3px solid #3498db;
+}
+
+/* Стилі для підзаголовків і списків */
+#about h3 {
+    color: #2c3e50;
+    margin-top: 20px;
+}
+
+#about h4 {
+    color: #555;
+    margin-top: 15px;
+}
+
+#about ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+#about p {
+    margin-bottom: 15px;
+}
+
+/* Адаптивність для секції "Про мене" */
+@media (max-width: 768px) {
+    #about {
+        padding: 20px;
+    }
+
+    #about img {
+        max-width: 150px;
+    }
+
+    #about h3, #about h4 {
+        font-size: 1.2em;
+    }
+}
