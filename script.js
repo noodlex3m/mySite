@@ -1,54 +1,97 @@
 /**
- * Практичне Завдання: Динамічний Список Навичок
-Зараз ми об'єднаємо наші знання про масиви, цикли та створення елементів DOM, щоб динамічно генерувати список твоїх навичок.
+ *Мета
+Створити динамічний розділ "Мої проєкти", де кожен проєкт представлений у вигляді окремої "картки". Всі дані про проєкти будуть зберігатися в масиві в JavaScript, а HTML-структура буде генеруватися автоматично.
+Крок 1: Оновлення HTML (index.html)
+  1. Знайди секцію <section id="projects">.
+  2. Видали з неї все, що знаходиться між <h2>Мої проєкти</h2> та </section>. Тобто, видали кнопку та старий параграф.
+  3. Додай всередину пустий <div> з id="projects-container". Цей div буде нашим контейнером.
+Повинно вийти так:
+...
+Крок 2: Додавання Стилів (styles.css)
+Щоб наші картки виглядали гарно, додамо для них стилі.
+  1. Відкрий файл styles.css.
+  2. В самий кінець файлу додай наступний CSS-код:
+...
+Крок 3: Магія JavaScript (script.js)
+Це найголовніша частина. Ми напишемо код, який візьме дані і перетворить їх на HTML.
+  1. Відкрий файл script.js.
+  2. Можеш видалити або закоментувати старий код (про кнопку та список навичок), щоб не заважав.
+  3. Додай наступний код:
+...
+Після виконання всіх трьох кроків, онови свою сторінку. Ти повинен побачити гарно оформлений розділ з трьома картками проєктів. Найголовніше — тепер, щоб додати новий проєкт, тобі достатньо просто додати новий об'єкт в масив projects в JavaScript, і він автоматично з'явиться на сайті!
 
-1. В index.html:
-
-    Знайди секцію about (<section id="about">).
-
-    Десь у логічному місці (наприклад, після абзацу про твої цілі) додай таку структуру:
-
-        <h3>Мої ключові навички:</h3>
-        <ul id="skills-list"></ul>
-
-    Ми створили порожній список, який будемо наповнювати за допомогою JS.
-
-2. В script.js:
-
-    Залиш код з попереднього завдання (з кнопкою).
-
-    Додай під ним новий код, який:
-
-        1. Створює масив рядків з твоїми навичками, наприклад:
-            const skills = ["HTML", "CSS", "JavaScript", "Git", "Аудит"];
-
-        2. Знаходить на сторінці список <ul> за його id (skills-list) і зберігає у змінну.
-        
-        3. Запускає цикл for для перебору масиву skills.
-
-        4. Всередині циклу для кожного елемента масиву:
-
-            Створює новий елемент <li>.
-
-            Присвоює його textContent поточній навичці з масиву.
-
-            Додає (append) цей новий <li> до знайденого на сторінці списку <ul>.
-
-Після виконання цього завдання, на твоїй сторінці має автоматично з'явитися заповнений список твоїх навичок. Це дуже поширена та корисна техніка!
+Успіхів!
  */
 
 // solution
-const mainButton = document.getElementById("show-info-btn");
-const mainTitle = document.querySelector("h1");
-mainButton.addEventListener("click", function () {
-  mainTitle.textContent = "JavaScript - це потужно!";
-});
+// 1. Дані про проєкти
+const projects = [
+  {
+    title: "Сайт-портфоліо",
+    technologies: ["HTML", "CSS", "JavaScript", "DOM API"],
+    isCompleted: true,
+    description:
+      "Мій особистий сайт, який ви зараз переглядаєте. Створений для демонстрації навичок та інформації про мене.",
+  },
+  {
+    title: "Інтернет-магазин 'TechWorld'",
+    technologies: ["React", "Node.js", "PostgreSQL"],
+    isCompleted: false,
+    description:
+      "Концепт інтернет-магазину електроніки. На даний момент у стадії планування та розробки архітектури.",
+  },
+  {
+    title: "Застосунок для погоди",
+    technologies: ["HTML", "CSS", "JavaScript", "Fetch API"],
+    isCompleted: true,
+    description:
+      "Простий односторінковий застосунок, що показує поточну погоду в обраному місті, використовуючи публічний API.",
+  },
+];
+// 2. Знаходимо контейнер на сторінці
+const projectsContainer = document.getElementById("projects-container");
 
-// solution 2
-const skills = ["HTML", "CSS", "JavaScript", "Git", "Аудит"];
-const mainList = document.getElementById("skills-list");
-for (let i = 0; i < skills.length; i++) {
-  const skillItem = document.createElement("li");
-  skillItem.textContent = skills[i];
-  mainList.appendChild(skillItem);
+// 3. Функція для відображення проєктів
+function renderProjects() {
+  // Очищуємо контейнер перед додаванням нових елементів
+  projectsContainer.innerHTML = "";
+  // 4. Перебираємо масив проєктів
+  for (const project of projects) {
+    // 5. Створюємо елементи для картки проєкту
+    const card = document.createElement("div");
+    card.classList.add("project-card");
+
+    const title = document.createElement("h3");
+    title.textContent = project.title;
+
+    const description = document.createElement("p");
+    description.textContent = project.description;
+
+    const tech = document.createElement("p");
+    tech.innerHTML = `<strong>Технології:</strong> <span class="technologies">${project.technologies.join(
+      ", "
+    )}</span>`;
+
+    const status = document.createElement("p");
+    const statusSpan = document.createElement("span");
+    statusSpan.classList.add("status");
+
+    if (project.isCompleted) {
+      statusSpan.textContent = "Завершено";
+      statusSpan.classList.add("completed");
+    } else {
+      statusSpan.textContent = "В розробці";
+      statusSpan.classList.add("in-progress");
+    }
+    status.append("Статус", statusSpan);
+
+    // 6. Додаємо всі створені елементи в картку
+    card.append(title, description, tech, status);
+
+    // 7. Додаємо готову картку в контейнер на сторінці
+    projectsContainer.append(card);
+  }
 }
+
+// 8. Викликаємо функцію, щоб відобразити проєкти при завантаженні сторінки
+renderProjects();
