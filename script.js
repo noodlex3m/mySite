@@ -83,7 +83,7 @@ function renderProjects() {
       statusSpan.textContent = "В розробці";
       statusSpan.classList.add("in-progress");
     }
-    status.append("Статус", statusSpan);
+    status.append("Статус: ", statusSpan);
 
     // 6. Додаємо всі створені елементи в картку
     card.append(title, description, tech, status);
