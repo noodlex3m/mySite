@@ -1,4 +1,3 @@
-// 1. Дані про проєкти
 const projects = [
   {
     title: "Сайт-портфоліо",
@@ -22,52 +21,27 @@ const projects = [
       "Простий односторінковий застосунок, що показує поточну погоду в обраному місті, використовуючи публічний API.",
   },
 ];
-// 2. Знаходимо контейнер на сторінці
 const projectsContainer = document.getElementById("projects-container");
 
-// 3. Функція для відображення проєктів
 function renderProjects() {
-  // Очищуємо контейнер перед додаванням нових елементів
-  projectsContainer.innerHTML = "";
-  // 4. Перебираємо масив проєктів
-  for (const project of projects) {
-    // 5. Створюємо елементи для картки проєкту
-    const card = document.createElement("div");
-    card.classList.add("project-card");
-
-    const title = document.createElement("h3");
-    title.textContent = project.title;
-
-    const description = document.createElement("p");
-    description.textContent = project.description;
-
-    const tech = document.createElement("p");
-    tech.innerHTML = `<strong>Технології:</strong> <span class="technologies">${project.technologies.join(
-      ", "
-    )}</span>`;
-
-    const status = document.createElement("p");
-    const statusSpan = document.createElement("span");
-    statusSpan.classList.add("status");
-
-    if (project.isCompleted) {
-      statusSpan.textContent = "Завершено";
-      statusSpan.classList.add("completed");
-    } else {
-      statusSpan.textContent = "В розробці";
-      statusSpan.classList.add("in-progress");
-    }
-    status.append("Статус: ", statusSpan);
-
-    // 6. Додаємо всі створені елементи в картку
-    card.append(title, description, tech, status);
-
-    // 7. Додаємо готову картку в контейнер на сторінці
-    projectsContainer.append(card);
-  }
+  const projectsHtml = projects
+    .map((project) => {
+      // Тут повертаємо рядок з HTML-розміткою для однієї картки
+      // Використовуй зворотні лапки `` для зручності
+      return `
+      <div class="project-card">
+        <h3>${project.title}</h3>
+        <!-- ... і так далі для решти полів ... -->
+        <p>Статус: <span class="status ${
+          project.isCompleted ? "completed" : "in-progress"
+        }">${project.isCompleted ? "Завершено" : "В розробці"}</span></p>
+      </div>
+    `;
+    })
+    .join("");
+  projectsContainer.innerHTML = projectsHtml;
 }
 
-// 8. Викликаємо функцію, щоб відобразити проєкти при завантаженні сторінки
 renderProjects();
 
 // Віджет погоди
