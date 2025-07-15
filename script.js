@@ -26,15 +26,21 @@ const projectsContainer = document.getElementById("projects-container");
 function renderProjects() {
   const projectsHtml = projects
     .map((project) => {
-      // Тут повертаємо рядок з HTML-розміткою для однієї картки
-      // Використовуй зворотні лапки `` для зручності
       return `
       <div class="project-card">
         <h3>${project.title}</h3>
-        <!-- ... і так далі для решти полів ... -->
-        <p>Статус: <span class="status ${
-          project.isCompleted ? "completed" : "in-progress"
-        }">${project.isCompleted ? "Завершено" : "В розробці"}</span></p>
+        <p>${project.description}</p>
+        <p>
+          <strong>Технології:</strong> 
+          <span class="technologies">${project.technologies.join(", ")}</span>
+        </p>
+        <p>Статус: 
+          <span class="status ${
+            project.isCompleted ? "completed" : "in-progress"
+          }">
+            ${project.isCompleted ? "Завершено" : "В розробці"}
+          </span>
+        </p>
       </div>
     `;
     })
