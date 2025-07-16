@@ -139,6 +139,42 @@
           Email: <a href="mailto:noodlex3m@gmail.com">noodlex3m@gmail.com</a>
         </p>
         <p>GitHub: <a href="https://github.com/noodlex3m">noodlex3m</a></p>
+        <form action="#">
+          <fieldset>
+            <legend>Обов'язкові дані</legend>
+            <div>
+              <label for="name">Ім'я: </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                size="40"
+                placeholder="Ваше повне прізвище, ім'я та по батькові"
+                required
+              />
+            </div>
+            <div>
+              <label for="email">Елетронна пошта: </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Ваш Email"
+                required
+              />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Додатково</legend>
+            <label for="comment"></label>
+            <textarea
+              name="comment"
+              id="comment"
+              placeholder="Ваші побажання..."
+            ></textarea>
+          </fieldset>
+          <button type="submit">Відправити</button>
+        </form>
       </section>
     </main>
 
