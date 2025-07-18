@@ -76,3 +76,13 @@ async function getWeather() {
 
 // Викликаємо функцію для отримання погоди
 getWeather();
+
+// Зробимо так, щоб ми могли отримувати дані, які користувач вводить у форму.
+const form = document.querySelector("form");
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  const inputName = document.getElementById("name").value;
+  const inputEmail = document.getElementById("email").value;
+  const inputComment = document.getElementById("comment").value;
+  console.log({ name: inputName, email: inputEmail, comment: inputComment });
+});
