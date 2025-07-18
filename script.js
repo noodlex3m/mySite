@@ -81,8 +81,20 @@ getWeather();
 const form = document.querySelector("form");
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  const inputName = document.getElementById("name").value;
-  const inputEmail = document.getElementById("email").value;
-  const inputComment = document.getElementById("comment").value;
+  const inputName = document.getElementById("name").value.trim();
+  const inputEmail = document.getElementById("email").value.trim();
+  const inputComment = document.getElementById("comment").value.trim();
+  if (!inputName || !inputEmail) {
+    alert("Будь ласка, заповніть обов'язкові поля: ім'я та email!");
+    return;
+  }
+
   console.log({ name: inputName, email: inputEmail, comment: inputComment });
 });
+
+// Зміна фону кнопки при відправці форми
+const button = document.getElementById("myButton");
+button.addEventListener(
+  "click",
+  () => (button.style.backgroundColor = "green")
+);
